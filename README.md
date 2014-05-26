@@ -51,6 +51,7 @@ Setting this option to an array of file extensions will exclude files ending wit
 ```javascript
 var compilify = require( 'compilify' )
 
+// Setting the default extensions
 compilify( myCompiler, { extensions: [ '.html', '.tmpl' ] } )
 ```
 
