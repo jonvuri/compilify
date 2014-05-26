@@ -27,6 +27,33 @@ function compilerFunction( file [, options ] ) {
 
 `options` will be an object containing options that are passed in when the Browserify transform is invoked. If an option is not set via Browserify, it will be populated from the `defaultOptions` object. If there are no options or default options, `options` will be an empty object.
 
+## Options handled by compilify
+
+```javascript
+{
+	extensions: [ Array of strings ],
+	excludeExtensions: [ Array of strings ]
+}
+```
+
+If neither of these options are set, your transform will operate on all files. If set, these options will also be passed through to your compiler function.
+
+##### extensions:
+
+Setting this option to an array of file extensions will restrict your transform to operating on files that end with one of those extensions.
+
+##### excludeExtensions:
+
+Setting this option to an array of file extensions will exclude files ending with one of those extensions from being operated on by your transform. If a file extension is set in both extensions and excludeExtensions, excludeExtensions will override.
+
+### Example
+
+```javascript
+var compilify = require( 'compilify' )
+
+compilify( myCompiler, { extensions: [ '.html', '.tmpl' ] } )
+```
+
 ## Usage
 
 ### Creating a compiler transform
