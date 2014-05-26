@@ -1,0 +1,25 @@
+{
+	"name": "compilify",
+	"version": "0.1.0",
+	"description": "A tool to make a simple compiler transform for Browserify",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/jrajav/compilify.git"
+	},
+	"dependencies": {
+		"through": "~2.3.4"
+	},
+	"devDependencies": {
+		"mocha": "~1.19.0",
+		"chai": "~1.9.1",
+		"browserify": "~4.1.5",
+		"eslint": "~0.6.2"
+	},
+	"scripts": {
+		"test": "node_modules/eslint/bin/eslint.js . && node_modules/mocha/bin/mocha -R spec"
+	},
+	"author": "Jonathan Rajavuori <jrajav@gmail.com>",
+	"license": "MIT",
+	"readmeFilename": "README.md"
+}
