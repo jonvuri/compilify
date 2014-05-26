@@ -8,15 +8,15 @@ The compiler can take in an options object, and a set of default options can be 
 ## API
 
 ```
-function compilify( compilerFunction, defaultOptions ) {
+var compilify = require( 'compilify' )
 
-}
+compilify( compilerFunction [, defaultOptions ] )
 ```
 
 `compilerFunction` should be a function of this form:
 
 ```
-function compilerFunction( file, options ) {
+function compilerFunction( file [, options ] ) {
 	
 	// Perform transformation
 
@@ -25,7 +25,7 @@ function compilerFunction( file, options ) {
 }
 ```
 
-`options` will be options that are passed in when the Browserify transform is invoked. If an option is not set via Browserify, it will be populated from `defaultOptions`. If there are no options or default options, `options` will be an empty object.
+`options` will be an object containing options that are passed in when the Browserify transform is invoked. If an option is not set via Browserify, it will be populated from the `defaultOptions` object. If there are no options or default options, `options` will be an empty object.
 
 ## Usage
 
@@ -42,7 +42,7 @@ function foobarCompiler( file ) {
 
 }
 
-module.exports = compilify( myCompiler )
+module.exports = compilify( foobarCompiler )
 ```
 
 ### Creating a transform with options
@@ -58,6 +58,7 @@ function foobarCompiler( file, options ) {
 
 }
 
+// Setting default to be 'bar'
 module.exports = compilify( foobarCompiler, { replacement: 'bar' } )
 ```
 
