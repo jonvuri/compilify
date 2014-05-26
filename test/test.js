@@ -12,9 +12,11 @@ var browserify = require( 'browserify' )
 var compilify = require( '../index' )
 
 
-function compiler( file ) {
+function compiler( file, options ) {
 
-	return file.replace( 'fuchsia', 'orange' )
+	var replacement = ( options && options.replacement ) || 'orange'
+
+	return file.replace( 'fuchsia', replacement )
 
 }
 
@@ -239,6 +241,42 @@ describe( 'Compilify', function ( ) {
 			expect( err ).to.not.exist
 			expect( result ).to.contain( 'orange one' )
 			expect( result ).to.contain( 'fuchsia two' )
+			done( )
+
+		} )
+
+	} )
+
+	it( 'should pass default options to compiler', function ( done ) {
+
+		var s = new stream.Readable( )
+		s.push( 'fuchsia one' )
+		s.push( null )
+
+		var b = browserify( s )
+		b.transform( compilify( compiler, { replacement: 'cyan' } ) )
+		b.bundle( function ( err, result ) {
+
+			expect( err ).to.not.exist
+			expect( result ).to.contain( 'cyan one' )
+			done( )
+
+		} )
+
+	} )
+
+	it( 'should pass instance options to compiler', function ( done ) {
+
+		var s = new stream.Readable( )
+		s.push( 'fuchsia one' )
+		s.push( null )
+
+		var b = browserify( s )
+		b.transform( { replacement: 'cyan' }, compilify( compiler ) )
+		b.bundle( function ( err, result ) {
+
+			expect( err ).to.not.exist
+			expect( result ).to.contain( 'cyan one' )
 			done( )
 
 		} )

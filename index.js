@@ -98,7 +98,7 @@ module.exports = function compilify( compiler, defaultOptions ) {
 
 			return throughMap( function ( file ) {
 
-				return 'module.exports=' + JSON.stringify( compiler( file ) )
+				return 'module.exports=' + JSON.stringify( compiler( file, options ) )
 
 			} )
 
