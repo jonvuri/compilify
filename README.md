@@ -7,7 +7,7 @@ The compiler can take in an options object, and a set of default options can be 
 
 ## API
 
-```
+```javascript
 var compilify = require( 'compilify' )
 
 compilify( compilerFunction [, defaultOptions ] )
@@ -15,7 +15,7 @@ compilify( compilerFunction [, defaultOptions ] )
 
 `compilerFunction` should be a function of this form:
 
-```
+```javascript
 function compilerFunction( file [, options ] ) {
 	
 	// Perform transformation
@@ -31,7 +31,7 @@ function compilerFunction( file [, options ] ) {
 
 ### Creating a compiler transform
 
-```
+```javascript
 // package 'foobarify'
 
 var compilify = require( 'compilify' )
@@ -47,7 +47,7 @@ module.exports = compilify( foobarCompiler )
 
 ### Creating a transform with options
 
-```
+```javascript
 // package 'foobarify'
 
 var compilify = require( 'compilify' )
@@ -66,13 +66,13 @@ module.exports = compilify( foobarCompiler, { replacement: 'bar' } )
 
 #### On the command line 
 
-```
+```shell
 $ browserify -t foobarify main.js
 ```
 
 #### With the Browserify API
 
-```
+```javascript
 var foobarify = require( 'foobarify' )
 
 var b = browserify( )
@@ -83,11 +83,11 @@ b.bundle( ).pipe( process.stdout )
 
 #### Passing options
 
-```
+```shell
 $ browserify -t [ foobarify --replacement "baz" ] main.js
 ```
 
-```
+```javascript
 var foobarify = require( 'foobarify' )
 
 var b = browserify( )
